@@ -21,7 +21,7 @@ import java.util.List;
 public class DashboardActivity extends AppCompatActivity {
 
     CountDownTimer countDownTimer;
-    int timerValue = 20;
+    int timerValue = 50;
 
     ProgressBar progressBar;
 
@@ -58,10 +58,12 @@ public class DashboardActivity extends AppCompatActivity {
 
         modelClass = allqueList.get(position);
 
+        next_btn.setClickable(false);
+
 //        Create Function to set data
         setData();
 
-        countDownTimer = new CountDownTimer(20000, 1000) {
+        countDownTimer = new CountDownTimer(40000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerValue--;
@@ -74,12 +76,22 @@ public class DashboardActivity extends AppCompatActivity {
                 dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
                 dialog.setContentView(R.layout.dialog_timeout);
                 dialog.show();
-                dialog.findViewById(R.id.btn_play_again).setOnClickListener(v -> {
-                    Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    dialog.dismiss();
+//                dialog.findViewById(R.id.btn_play_again).setOnClickListener(v -> {
+//                    Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    dialog.dismiss();
+//                });
+                dialog.findViewById(R.id.btn_play_again).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+                    }
                 });
+                dialog.show();
             }
+
         }.start();
     }
 
@@ -148,6 +160,8 @@ public class DashboardActivity extends AppCompatActivity {
 
     public void GameWon() {
         Intent intent = new Intent(DashboardActivity.this, GameWonActivity.class);
+        intent.putExtra("correct", correctCount);
+        intent.putExtra("wrong", wrongCount);
         startActivity(intent);
     }
 
@@ -178,6 +192,8 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void option1Click(View view) {
+
+        next_btn.setClickable(true);
         if (modelClass.getOption1().equals(modelClass.getCorrectOption())) {
             option1Card.setCardBackgroundColor(getResources().getColor(R.color.green));
 //            correctAns();
@@ -204,6 +220,8 @@ public class DashboardActivity extends AppCompatActivity {
 
 // Option 2 Clicking
     public void option2Click(View view) {
+
+        next_btn.setClickable(true);
         if (modelClass.getOption2().equals(modelClass.getCorrectOption())) {
             option2Card.setCardBackgroundColor(getResources().getColor(R.color.green));
 //            correctAns();
@@ -232,6 +250,8 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     public void option3Click(View view) {
+
+        next_btn.setClickable(true);
         if (modelClass.getOption3().equals(modelClass.getCorrectOption())) {
             option3Card.setCardBackgroundColor(getResources().getColor(R.color.green));
 //            correctAns();
@@ -259,6 +279,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     public void option4Click(View view) {
+
         if (modelClass.getOption4().equals(modelClass.getCorrectOption())) {
             option4Card.setCardBackgroundColor(getResources().getColor(R.color.green));
 //            correctAns();
