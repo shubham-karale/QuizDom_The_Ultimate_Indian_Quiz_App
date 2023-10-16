@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.QuizDomTheUltimateIndianQuiz" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/darkbackground</item>
+    </style>
+
+    <style name="Theme.QuizDomTheUltimateIndianQuiz" parent="Base.Theme.QuizDomTheUltimateIndianQuiz" />
+
+    <style name="dialog">
+        <item name="android:windowBackground">@drawable/empy_bg</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowMinWidthMajor">80%</item>
+        <item name = "windowActionBar">false</item>
+    </style>
+
+</resources>
